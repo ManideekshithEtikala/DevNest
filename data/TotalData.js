@@ -1,38 +1,40 @@
+
 const toolsData = [
   {
-    id: 1,
-    name: "ChatGPT",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
-    category: ["AI Tool", "Coding", "Chatbot"],
-    description: "Advanced AI chatbot for coding, writing, and more."
+    image:'/images/chatgpt.png',
+    title: "ChatGPT",
+    subtitle: "by OpenAI",
+    handle:"@chatgpt",
+    borderColor:"#10a37f",
+    gradient: "linear-gradient(120deg, #38c7ff ,#000)",
+    url: "https://chat.openai.com/",
   },
   {
-    id: 2,
-    name: "GitHub Copilot",
-    imageUrl: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-    category: ["Coding", "AI Tool"],
-    description: "AI-powered code completion for developers."
+    image:'/images/lovable.jpeg',
+    title: "Lovable",
+    subtitle: "Lovable AI",
+    handle:"@lovable",
+    borderColor:"#10a2rf",
+    gradient: "linear-gradient(135deg, #ff5938 ,#000)",
+    url: "https://chat.openai.com/",
   },
   {
-    id: 3,
-    name: "Midjourney",
-    imageUrl: "https://midjourney.com/_next/static/media/logo.2e0e6b9e.svg",
-    category: ["Image Generator", "AI Tool"],
-    description: "AI tool for generating images from text prompts."
+    image: "https://i.pravatar.cc/300?img=1",
+    title: "Sarah Johnson",
+    subtitle: "Frontend Developer",
+    handle: "@sarahjohnson",
+    borderColor: "#3B82F6",
+    gradient: "linear-gradient(145deg, #3B82F6, #000)",
+    url: "https://github.com/sarahjohnson"
   },
   {
-    id: 4,
-    name: "DALL·E",
-    imageUrl: "https://openai.com/content/images/2022/05/dalle-hero.png",
-    category: ["Image Generator", "AI Tool"],
-    description: "Create images from text using OpenAI's DALL·E."
-  },
-  {
-    id: 5,
-    name: "Replit",
-    imageUrl: "https://replit.com/public/images/logo.svg",
-    category: ["Coding", "IDE"],
-    description: "Online IDE and collaborative coding platform."
+    image: "https://i.pravatar.cc/300?img=2",
+    title: "Mike Chen",
+    subtitle: "Backend Engineer",
+    handle: "@mikechen",
+    borderColor: "#10B981",
+    gradient: "linear-gradient(180deg, #10B981, #000)",
+    url: "https://linkedin.com/in/mikechen"
   }
 ];
 

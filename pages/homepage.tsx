@@ -1,22 +1,31 @@
 import React from "react";
-import TiltedCard from "./Carrdlayout/TiltedCard";
+import { ChromaGrid } from "./Carrdlayout/ChromaGrid";
+import toolsData from "../data/TotalData";
 
 export default function Homepage() {
   return (
     <div
       style={{
-        background: "#000",
-        position: "fixed",
-        inset: 0,
-        minHeight: "100vh",
+        background: "#000", // solid black background
+        minHeight: "100%", // cover full content height
         width: "100%",
         fontFamily: "'AR One Sans', Arial, Helvetica, sans-serif",
         margin: 0,
         padding: 0,
         boxSizing: "border-box",
-        zIndex: 0,
+        overflowX: "hidden",
       }}
     >
+      {/* Fixed full-screen black background layer */}
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          background: "#000",
+          zIndex: -1,
+        }}
+      />
+
       {/* Navbar */}
       <nav
         style={{
@@ -35,18 +44,19 @@ export default function Homepage() {
           zIndex: 10,
         }}
       >
-        {/* Left side: Logo */}
-        <div
+        <a
+          href="/"
           style={{
             fontWeight: 900,
             fontSize: "2rem",
             color: "#5227FF",
             letterSpacing: "-2px",
+            textDecoration: "none",
           }}
         >
           DevNest
-        </div>
-        {/* Right side: Search and Links */}
+        </a>
+
         <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
           {/* Search box */}
           <div
@@ -59,7 +69,6 @@ export default function Homepage() {
               marginRight: "1.5rem",
             }}
           >
-            {/* Search icon (SVG) */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="22"
@@ -70,7 +79,14 @@ export default function Homepage() {
               style={{ marginRight: "0.5rem" }}
             >
               <circle cx="11" cy="11" r="7" stroke="#5227FF" strokeWidth="2" />
-              <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#5227FF" strokeWidth="2" />
+              <line
+                x1="16.5"
+                y1="16.5"
+                x2="21"
+                y2="21"
+                stroke="#5227FF"
+                strokeWidth="2"
+              />
             </svg>
             <input
               type="text"
@@ -86,46 +102,49 @@ export default function Homepage() {
               }}
             />
           </div>
-          {/* Nav links */}
-          <a
-            href="/about"
-            style={{
-              color: "#fff",
-              fontWeight: 600,
-              fontSize: "1.1rem",
-              textDecoration: "none",
-              transition: "color 0.2s",
-            }}
-          >
-            About Us
-          </a>
-          <a
-            href="/contact"
-            style={{
-              color: "#fff",
-              fontWeight: 600,
-              fontSize: "1.1rem",
-              textDecoration: "none",
-              transition: "color 0.2s",
-            }}
-          >
-            Contact Us
-          </a>
-          <a
-            href="/docs"
-            style={{
-              color: "#fff",
-              fontWeight: 600,
-              fontSize: "1.1rem",
-              textDecoration: "none",
-              transition: "color 0.2s",
-            }}
-          >
-            Docs
-          </a>
+
+          {/* Links */}
+          {["About Us", "Contact Us", "Docs"].map((text) => (
+            <a
+              key={text}
+              href={`/${text.toLowerCase().replace(" ", "")}`}
+              style={{
+                color: "#fff",
+                fontWeight: 600,
+                fontSize: "1.1rem",
+                textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+            >
+              {text}
+            </a>
+          ))}
         </div>
       </nav>
-      {/* Add your homepage content below */}
+
+      {/* Scrollable content */}
+      <main
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "2rem",
+          paddingTop: "100px", // push down below navbar
+          paddingBottom: "3rem",
+          width: "100%",
+          minHeight: "100vh", // ensures background stretches
+        }}
+      >
+        <div style={{ position: "relative", width: "100%" }}>
+          <ChromaGrid
+            items={toolsData}
+            radius={300}
+            damping={0.45}
+            fadeOut={0.6}
+            ease="power3.out"
+          />
+        </div>
+      </main>
     </div>
   );
 }
