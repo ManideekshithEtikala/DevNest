@@ -2,7 +2,7 @@ import React from "react";
 import { ChromaGrid } from "./Carrdlayout/ChromaGrid";
 import toolsData from "../data/TotalData";
 
-export default function Homepage() {
+export default function homepage() {
   return (
     <div
       style={{
