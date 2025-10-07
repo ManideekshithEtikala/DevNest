@@ -113,14 +113,9 @@ export default function Home() {
             fontWeight: 900,
             marginBottom: "1.2rem",
             lineHeight: 1.08,
-            letterSpacing: "-2px",
-            textShadow:
-              "0 6px 32px rgba(82,39,255,0.22), 0 2px 8px rgba(0,0,0,0.18)",
             pointerEvents: "auto",
           }}
         >
-          <span style={{ color: "#FF9FFC", fontWeight: 900 }}>DevNest</span>{" "}
-          <br />
           <span style={{ color: "#fff", fontWeight: 700 }}>
             Build. Innovate. Succeed.
           </span>
@@ -132,7 +127,6 @@ export default function Home() {
             color: "#EDEDED",
             marginBottom: "2.2rem",
             lineHeight: 1.5,
-            textShadow: "0 2px 12px rgba(82,39,255,0.12)",
             pointerEvents: "auto",
           }}
         >
@@ -150,7 +144,7 @@ export default function Home() {
           }}
         >
           <a
-            href="/get-started"
+            href="/homepage"
             style={{
               padding: "1rem 2.8rem",
               fontSize: "1.25rem",
