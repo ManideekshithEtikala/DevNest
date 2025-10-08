@@ -125,27 +125,28 @@ export default function showData() {
 
       {/* Scrollable content */}
       <main
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "2rem",
-          paddingTop: "100px", // push down below navbar
-          paddingBottom: "3rem",
-          width: "100%",
-          minHeight: "100vh", // ensures background stretches
-        }}
-      >
-        <div style={{ position: "relative", width: "100%" }}>
-          <ChromaGrid
-            items={toolsData}
-            radius={300}
-            damping={0.45}
-            fadeOut={0.6}
-            ease="power3.out"
-          />
-        </div>
-      </main>
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    paddingTop: "100px",
+    paddingBottom: "3rem",
+    width: "100%",
+    minHeight: "100vh",
+    overflowX: "hidden",
+  }}
+>
+  <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+    <ChromaGrid
+      items={toolsData}
+      radius={300}
+      damping={0.45}
+      fadeOut={0.6}
+      ease="power3.out"
+    />
+  </div>
+</main>
+
     </div>
   );
 }

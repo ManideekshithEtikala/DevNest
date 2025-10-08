@@ -19,11 +19,11 @@ interface ChromaGridProps {
   ease?: string;
 }
 
-export const ChromaGrid: React.FC<ChromaGridProps> = ({ 
-  items, 
-  radius = 250, 
-  damping = 0.5,
-  fadeOut = 0.5,
+export const ChromaGrid: React.FC<ChromaGridProps> = ({
+  items,
+  radius = 250,
+  damping = 0.6,
+  fadeOut = 0.6,
   ease = "power3.out",
 }) => {
   const gridRef = useRef<HTMLDivElement>(null);
@@ -58,59 +58,81 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
         const diffY = cardCenterY - clientY;
         const dist = Math.sqrt(diffX * diffX + diffY * diffY);
 
-        // Spotlight effect
-        const spotlightX = (clientX - cardBounds.left) / cardBounds.width * 100;
-        const spotlightY = (clientY - cardBounds.top) / cardBounds.height * 100;
+        // Spotlight
+        const spotlightX = ((clientX - cardBounds.left) / cardBounds.width) * 100;
+        const spotlightY = ((clientY - cardBounds.top) / cardBounds.height) * 100;
         card.style.setProperty("--mouse-x", `${spotlightX}%`);
         card.style.setProperty("--mouse-y", `${spotlightY}%`);
-        
-        // Animate non-affected cards
+
+        // Animate cards within and outside radius
         if (dist > radius) {
           gsap.to(card, {
             x: 0,
             y: 0,
             scale: 1,
-            filter: "grayscale(1) brightness(0.6)", // back to initial
+            z: 0,
+            filter: "grayscale(1) brightness(0.65)",
+            zIndex: 1,
             ease: ease,
-            duration: 1.5,
-            overwrite: true
+            duration: 0.9,
+            overwrite: true,
           });
         } else {
-          // Animate cards within radius
-          const angle = Math.atan2(diffY, diffX);
           const newX = mouseX * (1 - dist / radius) * damping;
           const newY = mouseY * (1 - dist / radius) * damping;
+          const lift = 20 * (1 - dist / radius); // lift effect
 
           gsap.to(card, {
             x: -newX,
             y: -newY,
-            scale: 1.05,
-            filter: `grayscale(0) brightness(1) opacity(${1 - (dist/radius) * fadeOut})`, // animate effect
+            z: lift,
+            scale: 1.07,
+            filter: `grayscale(0) brightness(1)`,
+            zIndex: 5, // bring hovered cards on top
             ease: ease,
-            duration: 1.8,
-            overwrite: true
+            duration: 0.8,
+            overwrite: true,
           });
         }
       });
     };
 
+    const onMouseLeave = () => {
+      cards.forEach((card) => {
+        gsap.to(card, {
+          x: 0,
+          y: 0,
+          z: 0,
+          scale: 1,
+          filter: "grayscale(1) brightness(0.6)",
+          zIndex: 1,
+          ease: ease,
+          duration: 0.8,
+        });
+      });
+    };
+
     grid.addEventListener("mousemove", onMouseMove);
+    grid.addEventListener("mouseleave", onMouseLeave);
 
     return () => {
       grid.removeEventListener("mousemove", onMouseMove);
+      grid.removeEventListener("mouseleave", onMouseLeave);
     };
-
   }, [isClient, radius, damping, fadeOut, ease]);
 
   return (
     <div className="chroma-grid" ref={gridRef}>
       {items.map((item, i) => (
-        <div 
-          key={i} 
-          className="chroma-card" 
-          style={{ 
+        <div
+          key={i}
+          className="chroma-card"
+          style={{
             ["--card-gradient" as any]: item.gradient,
-          }} 
+            cursor: item.url ? "pointer" : "default",
+          }}
+          
+          onClick={() => window.open(item.url, "_blank")}
         >
           <div className="chroma-img-wrapper">
             <img src={item.image} alt={item.title} />
