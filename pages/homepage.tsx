@@ -6,8 +6,8 @@ export default function homepage() {
   return (
     <div
       style={{
-        background: "#000", // solid black background
-        minHeight: "100%", // cover full content height
+        background: "#000", 
+        minHeight: "100%", 
         width: "100%",
         fontFamily: "'AR One Sans', Arial, Helvetica, sans-serif",
         margin: 0,
