@@ -1,14 +1,15 @@
 'use client'
 import React from "react";
 import { ChromaGrid } from "./ChromaGrid";
-import toolsData from "../../../data/TotalData";
+import { toolsData } from "../../../data/TotalData";
+import Shuffle from './Shuffle';
 
 export default function showData() {
   return (
     <div
       style={{
-        background: "#000", 
-        minHeight: "100%", 
+        background: "#000",
+        minHeight: "100%",
         width: "100%",
         fontFamily: "'AR One Sans', Arial, Helvetica, sans-serif",
         margin: 0,
@@ -49,7 +50,7 @@ export default function showData() {
           href="/"
           style={{
             fontWeight: 900,
-            fontSize: "2rem",
+            fontSize: "1.5rem",
             color: "#5227FF",
             letterSpacing: "-2px",
             textDecoration: "none",
@@ -125,28 +126,51 @@ export default function showData() {
 
       {/* Scrollable content */}
       <main
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    paddingTop: "100px",
-    paddingBottom: "3rem",
-    width: "100%",
-    minHeight: "100vh",
-    overflowX: "hidden",
-  }}
->
-  <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-    <ChromaGrid
-      items={toolsData}
-      radius={300}
-      damping={0.45}
-      fadeOut={0.6}
-      ease="power3.out"
-    />
-  </div>
-</main>
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          paddingTop: "100px",
+          paddingBottom: "3rem",
+          width: "100%",
+          minHeight: "100vh",
+          overflowX: "hidden",
+        }}
+      >
+        {/* 🔥 Animated Shuffle Heading */}
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "3rem",
+            color: "#fff",
+          }}
+        >
+          <Shuffle
+            text="Explore Top Developer Tools"
+            shuffleDirection="right"
+            duration={0.35}
+            animationMode="evenodd"
+            shuffleTimes={1}
+            ease="power3.out"
+            stagger={0.03}
+            threshold={0.1}
+            triggerOnce={true}
+            triggerOnHover={true}
+            respectReducedMotion={true}
+          />
+        </div>
 
+        {/* Grid Section */}
+        <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+          <ChromaGrid
+            items={toolsData}
+            radius={300}
+            damping={0.45}
+            fadeOut={0.6}
+            ease="power3.out"
+          />
+        </div>
+      </main>
     </div>
   );
 }

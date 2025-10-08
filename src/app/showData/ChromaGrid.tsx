@@ -125,7 +125,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
     <div className="chroma-grid" ref={gridRef}>
       {items.map((item, i) => (
         <div
-          key={i}
+        key={i}
           className="chroma-card"
           style={{
             ["--card-gradient" as any]: item.gradient,
@@ -142,7 +142,7 @@ export const ChromaGrid: React.FC<ChromaGridProps> = ({
             <p className="handle">{item.handle}</p>
             <p className="role">{item.subtitle}</p>
           </div>
-        </div>
+          </div>
       ))}
     </div>
   );
