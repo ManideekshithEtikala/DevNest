@@ -1,8 +1,9 @@
+'use client'
 import React from "react";
-import { ChromaGrid } from "./Carrdlayout/ChromaGrid";
-import toolsData from "../data/TotalData";
+import { ChromaGrid } from "./ChromaGrid";
+import toolsData from "../../../data/TotalData";
 
-export default function homepage() {
+export default function showData() {
   return (
     <div
       style={{

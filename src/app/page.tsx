@@ -144,7 +144,7 @@ export default function Home() {
           }}
         >
           <a
-            href="/homepage"
+            href="/showData"
             style={{
               padding: "1rem 2.8rem",
               fontSize: "1.25rem",
